@@ -61,7 +61,7 @@ void draw()	//draw the panels and text
 		string message = "You Won\nTime it took: " + to_string(seconds / 60) + ":" + to_string(seconds % 60);
 		MessageBox(NULL, message.c_str(), "WooHoo", MB_OK);
 	}
-	else if (lost)	//show message if lost
+	else if (lost)	//show message if loss
 	{
 		MessageBox(NULL, "You hit a bomb", "AW", MB_OK);
 	}
