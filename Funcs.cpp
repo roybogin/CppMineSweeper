@@ -1,8 +1,6 @@
 #include "Data.h"
 #include "Funcs.h"
-#include <sstream>
-#include <chrono>
-#include <windows.h>
+
 
 
 void createBoard()
@@ -18,7 +16,7 @@ void createBoard()
 
 
 
-void generateBombs(int number)
+void generateBombs(int number, Panel* panel)
 {
 	if (number >= ROWS * COLS)
 		throw std::exception("The number of the bombs is too high");	// maximum number of bombs is numbers of panels
@@ -31,7 +29,7 @@ void generateBombs(int number)
 			int randomRow = rand() % ROWS;
 			int randomCol = rand() % COLS;
 			Panel* p = grid[randomRow * COLS + randomCol];
-			if (p->getHasBomb())
+			if (p->getHasBomb() || p == panel)
 				continue;	//skip if p has a bomb
 			p->addBomb();
 			i++;

@@ -1,7 +1,4 @@
-#include <SFML/Graphics.hpp>
-#include <windows.h>
 #include "Data.h"
-#include "Panel.h"
 #include "Funcs.h"
 using namespace sf;
 
@@ -14,11 +11,13 @@ std::chrono::time_point<std::chrono::system_clock> endTime;
 Color background;
 bool won;
 bool lost;
+bool firstClick;
 
 void init()	//initiate the game
 {
 	won = false;
 	lost = false;
+	firstClick = true;
 	if (!(font.loadFromFile("arial.ttf")))
 	{
 		cout << "Error loading file" << endl;
@@ -29,7 +28,6 @@ void init()	//initiate the game
 	background = Color(255, 255, 255);
 
 	createBoard();
-	generateBombs(BOMBS);
 }
 
 
@@ -69,6 +67,7 @@ void draw()	//draw the panels and text
 
 int main()
 {
+
 	init();
 	draw();
 	while (window.isOpen())
@@ -90,6 +89,11 @@ int main()
 						{
 							if (Mouse::isButtonPressed(Mouse::Left))
 							{
+								if (firstClick)
+								{
+									generateBombs(BOMBS, p);
+									firstClick = false;
+								}
 								p->leftClick();
 								if (BOMBS == unviewed)	//if everythong is viewed but the bombs the player won
 									victory();
