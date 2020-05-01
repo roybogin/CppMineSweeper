@@ -68,7 +68,7 @@ void socketConnect()
 	}
 
 	// Accept a client socket
-	cout << "You can connect now";
+	cout << "You can connect now" << endl;
 	ClientSocket = accept(ListenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET) {
 		printf("accept failed with error: %d\n", WSAGetLastError());
@@ -79,6 +79,8 @@ void socketConnect()
 
 	// No longer need server socket
 	closesocket(ListenSocket);
+
+	cout << "connected" << endl;
 }
 
 void socketSend(const char* data)
@@ -86,6 +88,16 @@ void socketSend(const char* data)
 	if (strlen(data) > 0)
 		send(ClientSocket, data, strlen(data), 0);
 }
+
+void socketSendBoard()
+{
+	char byteGrid[ROWS * COLS];
+	for (int i = 0; i < ROWS * COLS; i++)
+	{
+		char textVal = grid[i]->getText()[0];
+	}
+}
+
 
 string socketRecv()
 {
@@ -96,5 +108,5 @@ string socketRecv()
 	{
 		return string(buffer);
 	}
-	return NULL;
+	return "";
 }

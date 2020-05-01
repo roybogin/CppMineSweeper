@@ -14,6 +14,17 @@ void createBoard()
 	}
 }
 
+void deleteBoard()
+{
+	for (int row = 0; row < ROWS; row++)
+	{
+		for (int col = 0; col < COLS; col++)
+		{
+			delete grid[row * COLS + col];
+		}
+	}
+}
+
 
 
 void generateBombs(int number, Panel* panel)
@@ -39,15 +50,21 @@ void generateBombs(int number, Panel* panel)
 
 void victory()
 {
-	endTime = std::chrono::system_clock::now();
-	background =  Color(0, 255, 127);
-	won = true;
+	if (!lost)
+	{
+		endTime = std::chrono::system_clock::now();
+		background = Color(0, 255, 127);
+		won = true;
+	}
 }
 
 void loss()
 {
-	background = Color(255, 0, 0);
-	lost = true;
+	if (!won)
+	{
+		background = Color(255, 0, 0);
+		lost = true;
+	}
 }
 
 Panel* getPanel(sf::Vector2f location)

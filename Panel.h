@@ -27,6 +27,7 @@ public:
 	
 	//getters
 	bool getHasBomb();
+	bool getViewed();
 	pair<int, int> getGridPos();
 	sf::Vector2f getPosition();
 	string getText();

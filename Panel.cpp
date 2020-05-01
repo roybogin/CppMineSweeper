@@ -67,6 +67,12 @@ bool Panel::getHasBomb()
 {
 	return hasBomb;
 }
+
+bool Panel::getViewed()
+{
+	return viewed;
+}
+
 pair<int, int> Panel::getGridPos()
 {
 	return gridPos;

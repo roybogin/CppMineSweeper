@@ -1,6 +1,7 @@
 #pragma once
 #include "Panel.h"
 void createBoard();	//create the board and all of the panels
+void deleteBoard();
 void generateBombs(int number, Panel* panel);	// generate the number of bombs in random panels
 void victory();	//function if player won
 void loss();	//function if player lost

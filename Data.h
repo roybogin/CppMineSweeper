@@ -14,12 +14,12 @@
 
 using namespace sf;
 
-const int ROWS = 8;
-const int COLS = 8;
-const int BOMBS = 8;
+const int ROWS = 5;
+const int COLS = 5;
+const int BOMBS = 6;
 const int LENGTH = 50;
 const int MARGIN = 10;
-const bool MLSolver = false;	//for machine learning
+const bool MLSolver = true;	//for machine learning
 extern bool firstClick;
 extern int unviewed;	//how many panels are unviewed
 extern bool won;	//did the player win
