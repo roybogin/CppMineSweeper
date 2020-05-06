@@ -133,6 +133,7 @@ int main()
 		while (1)
 		{
 			string done = "false";
+			string didWin = "false";
 			int reward = 0;
 			string recieved = socketRecv();
 			string toSend = "";
@@ -171,7 +172,7 @@ int main()
 
 				if (p->getViewed())
 				{
-					reward = 0;
+					reward = -1;
 				}
 				else
 				{
@@ -180,7 +181,7 @@ int main()
 						generateBombs(BOMBS, p);
 						firstClick = false;
 					}
-					p->leftClick();
+					int discovered = p->leftClick();
 					if (p->getHasBomb())	//if the player clicked a bomb he lost
 						lost = true;
 					else if (BOMBS == unviewed)	//if everythong is viewed but the bombs the player won
@@ -192,13 +193,13 @@ int main()
 					}
 					else
 					{
+						reward = 1;
 						if (won)
 						{
-							reward = 1;
+							//reward = 1;
 							done = "true";
+							didWin = "true";
 						}
-						else
-							reward = 1;
 					}
 				}
 				string observation;
@@ -215,7 +216,7 @@ int main()
 					if (i != ROWS * COLS - 1)
 						observation = observation + ", ";
 				}
-				toSend = observation + "#" + to_string(reward) + "#" + done;
+				toSend = observation + "#" + to_string(reward) + "#" + done + "#" + didWin;
 			}
 
 			socketSend(toSend.c_str());

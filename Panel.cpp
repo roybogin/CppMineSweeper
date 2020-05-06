@@ -118,7 +118,7 @@ int Panel::bombsAround()
 	return bombCount;
 }
 
-void Panel::showSquare()
+int Panel::showSquare()
 {
 	int bombCount = bombsAround();
 	viewed = true;
@@ -127,22 +127,25 @@ void Panel::showSquare()
 		text = to_string(bombCount);
 		foreColor = colors[bombCount - 1];
 		unviewed--;
+		return 1;
 	}
 	else
 	{	//if there are no bombs show numbers around (if not flagged)
 		text = "";
+		int shownCount = 1;
 		unviewed--;
 		vector<Panel*> lst = getAround();
 		for(Panel* p : lst)
 		{
 			if ((!p->viewed) && (!p->flagged))
-				p->showSquare();
+				shownCount += p->showSquare();
 		}
+		return shownCount;
 	}
 
 }
 
-void Panel::leftClick()
+int Panel::leftClick()
 {
 	if (!viewed && !flagged)
 	{
@@ -151,10 +154,11 @@ void Panel::leftClick()
 		{
 			text = "X";
 			foreColor = Color(255, 0, 0);
+			return 1;
 		}
 		else
 		{
-			showSquare();
+			return showSquare();
 		}
 	}
 }

@@ -14,9 +14,9 @@
 
 using namespace sf;
 
-const int ROWS = 5;
-const int COLS = 5;
-const int BOMBS = 6;
+const int ROWS = 4;
+const int COLS = 4;
+const int BOMBS = 3;
 const int LENGTH = 50;
 const int MARGIN = 10;
 const bool MLSolver = true;	//for machine learning

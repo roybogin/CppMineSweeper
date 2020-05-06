@@ -21,8 +21,8 @@ public:
 	Panel(pair<int, int> gridPos, sf::Vector2f location);	//create a panel
 	void addBomb();	//add a bomb to the panel
 	int bombsAround();	//get number of bombs on panels around
-	void showSquare();	//show the number value of the panel
-	void leftClick();
+	int showSquare();	//show the number value of the panel
+	int leftClick();
 	void rightClick();
 	
 	//getters
