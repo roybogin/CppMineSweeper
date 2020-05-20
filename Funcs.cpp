@@ -25,8 +25,6 @@ void deleteBoard()
 	}
 }
 
-
-
 void generateBombs(int number, Panel* panel)
 {
 	if (number >= ROWS * COLS)

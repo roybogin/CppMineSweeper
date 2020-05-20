@@ -89,15 +89,6 @@ void socketSend(const char* data)
 		send(ClientSocket, data, strlen(data), 0);
 }
 
-void socketSendBoard()
-{
-	char byteGrid[ROWS * COLS];
-	for (int i = 0; i < ROWS * COLS; i++)
-	{
-		char textVal = grid[i]->getText()[0];
-	}
-}
-
 
 string socketRecv()
 {
