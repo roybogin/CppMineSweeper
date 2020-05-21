@@ -28,7 +28,7 @@ extern Color background;	//current background color
 extern RenderWindow window;
 const Color colors[8] = { sf::Color(1, 0, 254), sf::Color(1, 127, 1), sf::Color(254, 0, 0), sf::Color(1, 0, 125), sf::Color(128, 0, 0), sf::Color(0, 127, 126), sf::Color(0, 0, 0), sf::Color(128, 128, 128) };	//colors for numbers between 1 and 8
 
-const string IP_ADDR = "127.0.0.1";
+const PCSTR IP_ADDR = "127.0.0.1";
 const PCSTR PORT = "2000";
 
 extern std::chrono::time_point<std::chrono::system_clock> startTime;

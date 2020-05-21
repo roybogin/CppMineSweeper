@@ -27,7 +27,7 @@ void socketCreate()
 	hints.ai_flags = AI_PASSIVE;
 
 	// Resolve the server address and port
-	iResult = getaddrinfo(NULL, PORT, &hints, &result);
+	iResult = getaddrinfo(IP_ADDR, PORT, &hints, &result);
 	if (iResult != 0) {
 		printf("getaddrinfo failed with error: %d\n", iResult);
 		WSACleanup();
