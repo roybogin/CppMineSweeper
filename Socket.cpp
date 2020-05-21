@@ -47,7 +47,7 @@ void socketCreate()
 
 void socketConnect()
 {
-	// Setup the TCP listening socket
+	// bind - activate socket for ip and port
 	iResult = bind(ListenSocket, result->ai_addr, (int)result->ai_addrlen);
 	if (iResult == SOCKET_ERROR) {
 		printf("bind failed with error: %d\n", WSAGetLastError());
@@ -59,7 +59,8 @@ void socketConnect()
 
 	freeaddrinfo(result);
 
-	iResult = listen(ListenSocket, SOMAXCONN);
+	// listen for incoming connection
+	iResult = listen(ListenSocket, 1);
 	if (iResult == SOCKET_ERROR) {
 		printf("listen failed with error: %d\n", WSAGetLastError());
 		closesocket(ListenSocket);
@@ -67,7 +68,7 @@ void socketConnect()
 		exit(1);
 	}
 
-	// Accept a client socket
+	// accept a connection
 	cout << "You can connect now" << endl;
 	ClientSocket = accept(ListenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET) {

@@ -18,11 +18,11 @@ void init()	//initiate the game
 	won = false;
 	lost = false;
 	firstClick = true;
-	unviewed = ROWS * COLS;
+	unviewed = ROWS * COLS;	//number of unviewed tiles
 
 	if (!MLSolver)
 	{
-		if (!(font.loadFromFile("arial.ttf")))
+		if (!(font.loadFromFile("arial.ttf")))	//load font for text
 		{
 			cout << "Error loading file" << endl;
 			system("pause");
@@ -90,9 +90,9 @@ void mlUpdate()
 		int reward = 0;
 		string recieved = socketRecv();
 		string toSend = "";
-		if (recieved == "input_num" || recieved == "action_num")
+		if (recieved == "input_num" || recieved == "action_num")	//input num = number of NN inputs, action_num = number of possible actions
 			toSend = to_string(ROWS * COLS);
-		else if (recieved == "reset")
+		else if (recieved == "reset")	//reset the game
 		{
 			won = false;
 			lost = false;
@@ -114,11 +114,11 @@ void mlUpdate()
 			}
 			toSend = observation;
 		}
-		else if (recieved == "close")
+		else if (recieved == "close")	//close the game
 		{
 			exit(0);
 		}
-		else if (recieved.substr(0, 4) == "step")
+		else if (recieved.substr(0, 4) == "step")	//NN preforms action - action is revealing a tile
 		{
 			int action = stoi(recieved.substr(5));
 			Panel* p = grid[action];
@@ -149,7 +149,6 @@ void mlUpdate()
 					reward = 1;
 					if (won)
 					{
-						//reward = 1;
 						done = "true";
 						didWin = "true";
 					}
@@ -169,14 +168,14 @@ void mlUpdate()
 				if (i != ROWS * COLS - 1)
 					observation = observation + ", ";
 			}
-			toSend = observation + "#" + to_string(reward) + "#" + done + "#" + didWin;
+			toSend = observation + "#" + to_string(reward) + "#" + done + "#" + didWin;	//info sent to the NN code
 		}
 
 		socketSend(toSend.c_str());
 	}
 }
 
-void mouseClick()
+void mouseClick()	//action preformed when the mouse is clicked
 {
 	auto translated_pos = window.mapPixelToCoords(Mouse::getPosition(window));	//click position relative to frame
 	Panel* p = getPanel(translated_pos);
@@ -186,7 +185,7 @@ void mouseClick()
 		{
 			if (firstClick)
 			{
-				generateBombs(BOMBS, p);
+				generateBombs(BOMBS, p);	//generating bombs only after first mouse click
 				firstClick = false;
 			}
 			p->leftClick();
@@ -201,7 +200,7 @@ void mouseClick()
 		}
 		if (Mouse::isButtonPressed(Mouse::Middle))
 		{
-			init();
+			init();	//middle click resets the game
 		}
 	}
 }

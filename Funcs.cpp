@@ -69,7 +69,7 @@ Panel* getPanel(sf::Vector2f location)
 {
 	int endCol = (int)floor((location.x - MARGIN) / (LENGTH + MARGIN));	//column of click as if the margin is connected to a panel's end
 	int startCol = (int)ceil((location.x - MARGIN - LENGTH) / (LENGTH + MARGIN));	//column of click as if the margin is connected to a panel's beginning
-	if (endCol != startCol)	//only the player clicked on margin
+	if (endCol != startCol)	//only if the player clicked on margin
 		return NULL;
 	int endRow = (int)floor((location.y - MARGIN) / (LENGTH + MARGIN));
 	int startRow = (int)ceil((location.y - MARGIN - LENGTH) / (LENGTH + MARGIN));

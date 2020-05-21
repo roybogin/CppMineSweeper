@@ -138,7 +138,7 @@ int Panel::showSquare()
 		for(Panel* p : lst)
 		{
 			if ((!p->viewed) && (!p->flagged))
-				shownCount += p->showSquare();
+				shownCount += p->showSquare();	//recursion for the panels around the given one
 		}
 		return shownCount;
 	}
@@ -163,7 +163,7 @@ int Panel::leftClick()
 	}
 }
 
-void Panel::rightClick()
+void Panel::rightClick()	//toggle flag
 {
 	if (!viewed)
 	{
