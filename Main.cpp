@@ -103,12 +103,7 @@ void mlUpdate()
 			string observation;
 			for (int i = 0; i < ROWS * COLS; i++)
 			{
-				string text = grid[i]->getText();
-				if (text == "")
-					text = "0";
-				if (text == "O")
-					text = "-5";
-				observation = observation + text;
+				observation = observation + "-5";
 				if (i != ROWS * COLS - 1)
 					observation = observation + ", ";
 			}
