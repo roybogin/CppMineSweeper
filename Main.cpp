@@ -1,5 +1,7 @@
 #include "Data.h"
 #include "Funcs.h"
+#include <chrono>
+#include <thread>
 using namespace sf;
 
 RenderWindow window(VideoMode((LENGTH + MARGIN)* COLS + MARGIN, (LENGTH + MARGIN)* ROWS + MARGIN), "MineSweeper");
@@ -20,7 +22,7 @@ void init()	//initiate the game
 	firstClick = true;
 	unviewed = ROWS * COLS;	//number of unviewed tiles
 
-	if (!MLSolver)
+	if (!MLSolver || SHOW_GAME)
 	{
 		if (!(font.loadFromFile("arial.ttf")))	//load font for text
 		{
@@ -165,8 +167,13 @@ void mlUpdate()
 			}
 			toSend = observation + "#" + to_string(reward) + "#" + done + "#" + didWin;	//info sent to the NN code
 		}
-
+		
 		socketSend(toSend.c_str());
+		if (SHOW_GAME)
+		{
+			draw();
+			std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+		}
 	}
 }
 
@@ -224,7 +231,6 @@ int main()
 			}
 			draw();
 		}
-		
 	} 
 	else  	//Machine learning code	
 	{
