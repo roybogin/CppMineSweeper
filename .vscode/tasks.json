@@ -1,0 +1,33 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: g++.exe build active file",
+			"command": "C:\\MinGW\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-IC:\\Users\\roybo\\Desktop\\git repos\\SFML\\include",
+				"-LC:\\Users\\roybo\\Desktop\\git repos\\sfml_build\\lib",
+				"-g",
+				"${fileDirname}\\**.cpp",
+				"-lsfml-graphics",
+				"-lsfml-audio",
+				"-lsfml-window",
+				"-lsfml-system",
+				"-lsfml-network",
+				"-lWs2_32",
+				"-o",
+				"${fileDirname}\\MineSweeper.exe"
+			],
+			"options": {
+				"cwd": "C:\\MinGW\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:\\MinGW\\bin\\g++.exe"
+		}
+	]
+}

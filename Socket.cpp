@@ -69,7 +69,7 @@ void socketConnect()
 	}
 
 	// accept a connection
-	cout << "You can connect now" << endl;
+	std::cout << "You can connect now" << std::endl;
 	ClientSocket = accept(ListenSocket, NULL, NULL);
 	if (ClientSocket == INVALID_SOCKET) {
 		printf("accept failed with error: %d\n", WSAGetLastError());
@@ -81,7 +81,7 @@ void socketConnect()
 	// No longer need server socket
 	closesocket(ListenSocket);
 
-	cout << "connected" << endl;
+	std::cout << "connected" << std::endl;
 }
 
 void socketSend(const char* data)
@@ -91,14 +91,14 @@ void socketSend(const char* data)
 }
 
 
-string socketRecv()
+std::string socketRecv()
 {
 	char buffer[1024];
 	ZeroMemory(buffer, 1024);
 	int bytesRecieved = recv(ClientSocket, buffer, 1024, 0);
 	if (bytesRecieved > 0)
 	{
-		return string(buffer);
+		return std::string(buffer);
 	}
 	return "";
 }

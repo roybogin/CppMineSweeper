@@ -9,7 +9,7 @@ void createBoard()
 	{
 		for (int col = 0; col < COLS; col++)
 		{
-			grid[row * COLS + col] = new Panel(pair<int, int>(row, col), Vector2f((LENGTH + MARGIN) * col + MARGIN, (LENGTH + MARGIN) * row + MARGIN));
+			grid[row * COLS + col] = new Panel(std::pair<int, int>(row, col), Vector2f((LENGTH + MARGIN) * col + MARGIN, (LENGTH + MARGIN) * row + MARGIN));
 		}
 	}
 }
@@ -28,7 +28,7 @@ void deleteBoard()
 void generateBombs(int number, Panel* panel)
 {
 	if (number >= ROWS * COLS)
-		throw std::exception("The number of the bombs is too high");	// maximum number of bombs is numbers of panels
+		throw std::runtime_error("The number of the bombs is too high");	// maximum number of bombs is numbers of panels
 	else
 	{
 		int i = 0;

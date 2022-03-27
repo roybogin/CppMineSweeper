@@ -1,7 +1,7 @@
 #include "Data.h"
 
 
-Panel::Panel(pair<int, int> gridPos, sf::Vector2f location)
+Panel::Panel(std::pair<int, int> gridPos, sf::Vector2f location)
 {
 	this->gridPos = gridPos;
 	this->position = location;
@@ -14,9 +14,9 @@ Panel::Panel(pair<int, int> gridPos, sf::Vector2f location)
 	flagged = false;
 }
 
-vector<Panel*> Panel::getAround()
+std::vector<Panel*> Panel::getAround()
 {
-	vector<Panel*> lst;
+	std::vector<Panel*> lst;
 	int row = gridPos.first;
 	int col = gridPos.second;
 	if (row != 0)	//if not on first row (there is a row above)
@@ -73,7 +73,7 @@ bool Panel::getViewed()
 	return viewed;
 }
 
-pair<int, int> Panel::getGridPos()
+std::pair<int, int> Panel::getGridPos()
 {
 	return gridPos;
 }
@@ -81,7 +81,7 @@ sf::Vector2f Panel::getPosition()
 {
 	return position;
 }
-string Panel::getText()
+std::string Panel::getText()
 {
 	return text;
 }
@@ -107,7 +107,7 @@ void Panel::addBomb()
 int Panel::bombsAround()
 {
 	int bombCount = 0;
-	vector<Panel*> lst = getAround();
+	std::vector<Panel*> lst = getAround();
 	for (Panel* p : lst)
 	{
 		if (p->getHasBomb())
@@ -124,7 +124,7 @@ int Panel::showSquare()
 	viewed = true;
 	if (bombCount != 0)
 	{
-		text = to_string(bombCount);
+		text = std::to_string(bombCount);
 		foreColor = colors[bombCount - 1];
 		unviewed--;
 		return 1;
@@ -134,7 +134,7 @@ int Panel::showSquare()
 		text = "";
 		int shownCount = 1;
 		unviewed--;
-		vector<Panel*> lst = getAround();
+		std::vector<Panel*> lst = getAround();
 		for(Panel* p : lst)
 		{
 			if ((!p->viewed) && (!p->flagged))

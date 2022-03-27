@@ -24,9 +24,9 @@ void init()	//initiate the game
 
 	if (!MLSolver || SHOW_GAME)
 	{
-		if (!(font.loadFromFile("arial.ttf")))	//load font for text
+		if (!(font.loadFromFile("C:\\Users\\roybo\\Desktop\\git repos\\CppMineSweeper\\arial.ttf")))	//load font for text
 		{
-			cout << "Error loading file" << endl;
+			std::cout << "Error loading file" << std::endl;
 			system("pause");
 		}
 		startTime = std::chrono::system_clock::now();
@@ -74,7 +74,7 @@ void draw()	//draw the panels and text
 		else if (won)	//if won show time it took
 		{
 			int seconds = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime).count();
-			string message = "You Won\nTime it took: " + to_string(seconds / 60) + ":" + to_string(seconds % 60);
+			std::string message = "You Won\nTime it took: " + std::to_string(seconds / 60) + ":" + std::to_string(seconds % 60);
 			MessageBox(NULL, message.c_str(), "WooHoo", MB_OK);
 			exit(0);
 		}
@@ -87,13 +87,13 @@ void mlUpdate()
 {
 	while (1)
 	{
-		string done = "false";
-		string didWin = "false";
+		std::string done = "false";
+		std::string didWin = "false";
 		int reward = 0;
-		string recieved = socketRecv();
-		string toSend = "";
+		std::string recieved = socketRecv();
+		std::string toSend = "";
 		if (recieved == "input_num" || recieved == "action_num")	//input num = number of NN inputs, action_num = number of possible actions
-			toSend = to_string(ROWS * COLS);
+			toSend = std::to_string(ROWS * COLS);
 		else if (recieved == "reset")	//reset the game
 		{
 			won = false;
@@ -102,7 +102,7 @@ void mlUpdate()
 			unviewed = ROWS * COLS;
 			deleteBoard();
 			createBoard();
-			string observation;
+			std::string observation;
 			for (int i = 0; i < ROWS * COLS; i++)
 			{
 				observation = observation + "-5";
@@ -151,10 +151,10 @@ void mlUpdate()
 					}
 				}
 			}
-			string observation;
+			std::string observation;
 			for (int i = 0; i < ROWS * COLS; i++)
 			{
-				string text = grid[i]->getText();
+				std::string text = grid[i]->getText();
 				if (text == "")
 					text = "0";
 				if (text == "O")
@@ -165,14 +165,14 @@ void mlUpdate()
 				if (i != ROWS * COLS - 1)
 					observation = observation + ", ";
 			}
-			toSend = observation + "#" + to_string(reward) + "#" + done + "#" + didWin;	//info sent to the NN code
+			toSend = observation + "#" + std::to_string(reward) + "#" + done + "#" + didWin;	//info sent to the NN code
 		}
 		
 		socketSend(toSend.c_str());
 		if (SHOW_GAME)
 		{
 			draw();
-			std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+			std::this_thread::sleep_for(std::chrono::milliseconds(500));
 		}
 	}
 }
