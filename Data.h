@@ -17,8 +17,8 @@ using namespace sf;
 const int ROWS = 4;
 const int COLS = 4;
 const int BOMBS = 3;
-const int LENGTH = 50;	//pixel length of a tile
-const int MARGIN = 10;	//space between tiles
+const int LENGTH = 100;	//pixel length of a tile
+const int MARGIN = 20;	//space between tiles
 const bool MLSolver = true;	//for machine learning
 const bool SHOW_GAME = true;	//do you want to see the game while in ml
 extern bool firstClick;
