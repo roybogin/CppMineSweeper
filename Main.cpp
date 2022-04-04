@@ -80,7 +80,6 @@ void draw()	//draw the panels and text
 		}
 
 	}
-	
 }
 
 void mlUpdate()
@@ -96,6 +95,7 @@ void mlUpdate()
 			toSend = std::to_string(ROWS * COLS);
 		else if (recieved == "reset")	//reset the game
 		{
+			background = Color(255, 255, 255);
 			won = false;
 			lost = false;
 			firstClick = true;
@@ -133,9 +133,9 @@ void mlUpdate()
 				}
 				p->leftClick();
 				if (p->getHasBomb())	//if the player clicked a bomb he lost
-					lost = true;
+					loss();
 				else if (BOMBS == unviewed)	//if everythong is viewed but the bombs the player won
-					won = true;
+					victory();
 				if (lost)
 				{
 					reward = -10;
