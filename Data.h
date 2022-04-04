@@ -20,7 +20,7 @@ const int BOMBS = 3;
 const int LENGTH = 50;	//pixel length of a tile
 const int MARGIN = 10;	//space between tiles
 const bool MLSolver = true;	//for machine learning
-const bool SHOW_GAME = false;	//do you want to see the game while in ml
+const bool SHOW_GAME = true;	//do you want to see the game while in ml
 extern bool firstClick;
 extern int unviewed;	//how many panels are unviewed
 extern bool won;	//did the player win
