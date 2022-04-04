@@ -20,7 +20,7 @@ public:
 	void addBomb();	//add a bomb to the panel
 	int bombsAround();	//get number of bombs on panels around
 	int showSquare();	//show the number value of the panel
-	int leftClick();
+	void leftClick();
 	void rightClick();
 	
 	//getters

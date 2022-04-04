@@ -145,7 +145,7 @@ int Panel::showSquare()
 
 }
 
-int Panel::leftClick()
+void Panel::leftClick()
 {
 	if (!viewed && !flagged)
 	{
@@ -154,11 +154,10 @@ int Panel::leftClick()
 		{
 			text = "X";
 			foreColor = Color(255, 0, 0);
-			return 1;
 		}
 		else
 		{
-			return showSquare();
+			showSquare();
 		}
 	}
 }
